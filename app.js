@@ -43,15 +43,16 @@
 
   // ---- form ----
   function choice(name) { return document.querySelector('input[name="' + name + '"]:checked').value; }
-  function setForm(task, minutes, energy) {
+  function setForm(task, minutes, energy, kind) {
     $('task').value = task;
+    $('kind').value = kind || 'auto';
     var m = document.querySelector('input[name="minutes"][value="' + minutes + '"]');
     var e = document.querySelector('input[name="energy"][value="' + energy + '"]');
     if (m) m.checked = true;
     if (e) e.checked = true;
   }
   function makePlan() {
-    var plan = FS.buildPlan($('task').value, choice('minutes'), choice('energy'));
+    var plan = FS.buildPlan($('task').value, choice('minutes'), choice('energy'), $('kind').value);
     if (!plan) {
       $('formError').textContent = 'Type what you want to get done first. A few words is enough.';
       $('task').focus();
@@ -82,6 +83,8 @@
     $('planSection').hidden = !plan;
     if (!plan) return;
     $('planTitle').textContent = plan.task;
+    $('planNotice').textContent = FS.planNotice(plan) +
+      (plan.category === 'generic' && !plan.picked ? ' Or choose a task type above and make the plan again.' : ' Wrong type? Choose another under “Type of task” and make the plan again.');
     $('planMeta').textContent = 'Made for ' + plan.minutes + ' minutes and ' + plan.energy + ' energy. Edit anything you like.';
     var list = $('steps');
     list.textContent = '';
@@ -190,7 +193,7 @@
   $('resetBtn').addEventListener('click', function () {
     if (!window.confirm('Clear this plan and start over? Plans you saved on this device stay saved.')) return;
     state.current = null;
-    setForm('', 15, 'medium');
+    setForm('', 15, 'medium', 'auto');
     $('formError').textContent = '';
     persist();
     renderPlan();
@@ -200,7 +203,7 @@
     if (!window.confirm('Delete the current plan and every saved plan from this browser? This cannot be undone.')) return;
     try { window.localStorage.removeItem(KEY); } catch (e) { /* nothing to remove */ }
     state = { current: null, saved: [] };
-    setForm('', 15, 'medium');
+    setForm('', 15, 'medium', 'auto');
     renderPlan();
     renderSaved();
     $('task').focus();
@@ -234,7 +237,7 @@
       var found = state.saved.filter(function (p) { return p.id === id; })[0];
       if (!found) return;
       state.current = FS.sanitizeState({ current: JSON.parse(JSON.stringify(found)) }).current;
-      setForm(state.current.task, state.current.minutes, state.current.energy);
+      setForm(state.current.task, state.current.minutes, state.current.energy, state.current.picked ? state.current.category : 'auto');
       persist();
       renderPlan();
       focusPlan();
@@ -242,6 +245,9 @@
   });
 
   // ---- start ----
+  FS.CATEGORIES.forEach(function (c) {
+    $('kind').appendChild(el('option', { value: c.id, text: c.choice }));
+  });
   FS.EXAMPLES.forEach(function (ex) {
     var b = el('button', { type: 'button', 'class': 'btn', text: ex.task });
     b.addEventListener('click', function () { setForm(ex.task, ex.minutes, ex.energy); makePlan(); });
@@ -251,7 +257,7 @@
     Array.prototype.forEach.call(document.querySelectorAll('#steps textarea'), autosize);
   });
   load();
-  if (state.current) setForm(state.current.task, state.current.minutes, state.current.energy);
+  if (state.current) setForm(state.current.task, state.current.minutes, state.current.energy, state.current.picked ? state.current.category : 'auto');
   renderPlan();
   renderSaved();
 })();

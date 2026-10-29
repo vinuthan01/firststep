@@ -22,6 +22,10 @@
         <textarea id="task" rows="2" maxlength="140" placeholder="For example: clean my room, or reply to Sam’s email" aria-describedby="formError"></textarea>
         <p id="formError" class="error" role="alert"></p>
 
+        <label for="kind" class="field-label">Type of task <span class="optional">(optional)</span></label>
+        <select id="kind"><option value="auto">Detect it from my words</option></select>
+        <p class="hint">Not sure it will guess right? Pick a type here. If nothing fits, choose “General plan”.</p>
+
         <fieldset>
           <legend>How much time do you have?</legend>
           <div class="pills">
@@ -56,6 +60,7 @@
     <section id="planSection" class="card" aria-labelledby="planTitle" hidden>
       <h2 id="planTitle" tabindex="-1"></h2>
       <p id="planMeta" class="hint"></p>
+      <p id="planNotice" class="notice"></p>
       <progress id="progress" max="1" value="0" aria-label="Progress"></progress>
       <p id="progressText" class="hint"></p>
 

@@ -1,0 +1,8 @@
+{
+  "name": "firststep",
+  "version": "1.0.0",
+  "description": "A free, private web app that turns a stuck task into a small first-step plan.",
+  "private": true,
+  "license": "MIT",
+  "scripts": { "test": "node --test" }
+}

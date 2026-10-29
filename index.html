@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FirstStep: a small first step for any task</title>
+  <meta name="description" content="Type what you want to get done, say how much time and energy you have, and get a small plan you can adjust. Free, private, and works offline.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>Stuck? Start with one small step.</h1>
+    <p>Tell FirstStep what you want to get done and how much time and energy you have. You get a short plan you can change, tick off, copy, or print.</p>
+    <p class="privacy">Everything stays on this device. No account, no sign-up, nothing sent anywhere.</p>
+  </header>
+
+  <main>
+    <section class="card" aria-labelledby="h-make">
+      <h2 id="h-make">What do you want to get done?</h2>
+      <form id="form" novalidate>
+        <label for="task" class="field-label">Your task, in a few words</label>
+        <textarea id="task" rows="2" maxlength="140" placeholder="For example: clean my room, or reply to Sam’s email" aria-describedby="formError"></textarea>
+        <p id="formError" class="error" role="alert"></p>
+
+        <fieldset>
+          <legend>How much time do you have?</legend>
+          <div class="pills">
+            <input type="radio" name="minutes" id="m5" value="5"><label for="m5">5 min</label>
+            <input type="radio" name="minutes" id="m10" value="10"><label for="m10">10 min</label>
+            <input type="radio" name="minutes" id="m15" value="15" checked><label for="m15">15 min</label>
+            <input type="radio" name="minutes" id="m30" value="30"><label for="m30">30 min</label>
+            <input type="radio" name="minutes" id="m60" value="60"><label for="m60">1 hour</label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>How is your energy right now?</legend>
+          <div class="pills">
+            <input type="radio" name="energy" id="e-low" value="low"><label for="e-low">Low</label>
+            <input type="radio" name="energy" id="e-medium" value="medium" checked><label for="e-medium">Medium</label>
+            <input type="radio" name="energy" id="e-high" value="high"><label for="e-high">High</label>
+          </div>
+          <p class="hint">Low energy gives fewer, gentler steps. High energy gives more.</p>
+        </fieldset>
+
+        <button type="submit" class="btn primary">Make my plan</button>
+      </form>
+
+      <div class="examples">
+        <h3>Or try an example</h3>
+        <div id="examples" class="chips"></div>
+        <noscript><p class="error">FirstStep needs JavaScript turned on in your browser to work.</p></noscript>
+      </div>
+    </section>
+
+    <section id="planSection" class="card" aria-labelledby="planTitle" hidden>
+      <h2 id="planTitle" tabindex="-1"></h2>
+      <p id="planMeta" class="hint"></p>
+      <progress id="progress" max="1" value="0" aria-label="Progress"></progress>
+      <p id="progressText" class="hint"></p>
+
+      <ol id="steps" class="steps"></ol>
+
+      <form id="addForm" class="add" novalidate>
+        <label for="newStep" class="field-label">Add your own step</label>
+        <div class="row">
+          <input type="text" id="newStep" maxlength="300" placeholder="For example: ask a friend for help">
+          <button type="submit" class="btn">Add step</button>
+        </div>
+      </form>
+
+      <div class="actions">
+        <button type="button" id="copyBtn" class="btn primary">Copy plan</button>
+        <button type="button" id="printBtn" class="btn">Print</button>
+        <button type="button" id="saveBtn" class="btn">Save on this device</button>
+        <button type="button" id="resetBtn" class="btn quiet">Start over</button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section class="card" aria-labelledby="h-saved">
+      <h2 id="h-saved">Saved on this device</h2>
+      <p id="savedEmpty" class="hint">No saved plans yet. Use “Save on this device” to keep one.</p>
+      <ul id="savedList" class="saved"></ul>
+      <p class="hint">Plans are stored only in this browser. They are never uploaded. Clearing your browser’s site data also removes them, or use the button below.</p>
+      <button type="button" id="clearAll" class="btn quiet">Clear all saved data</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>FirstStep gives general starting ideas from simple templates. It is not medical, legal, financial, or mental health advice. If you are struggling, a doctor, counsellor, or other qualified professional can help.</p>
+    <p>Free and open source under the MIT License.</p>
+  </footer>
+
+  <script src="plan.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -9,7 +9,7 @@ FirstStep is a free web page that helps you begin a task you are putting off. Yo
 - Your task never leaves your device. The page makes no network requests.
 - Works by double-clicking one file. No installing, no command line needed.
 
-> **Screenshot:** see [Add your screenshot](#add-your-screenshot) below.
+> **Screenshot:** ![FirstStep showing a plan](docs/screenshot.png.png)
 
 ## Features
 
@@ -88,16 +88,6 @@ FirstStep reads the words in your task and picks one of ten step templates (for 
 
 A quick search found other tools in this space, such as the open-source desktop app [Nudge](https://github.com/thatsjet/nudge-app) and several mobile apps and prototypes that break tasks into tiny steps (for example TinyStart, Unstuck, and ADHD Focus & Tasks). Many of them use AI services, accounts, or app stores. FirstStep takes a different approach: one file you can open offline, no AI or account, free forever, explicit time and energy choices, and plans you can edit, copy, and print. This was a quick search, not a complete survey, and many similar tools probably exist.
 
-## Add your screenshot
-
-1. Open `index.html` and make a plan.
-2. On Windows, press **Windows key + Shift + S**, drag over the page, and save the image.
-3. Save it in the `docs` folder as `screenshot.png`.
-4. Put this line here in the README, replacing this paragraph:
-
-```
-![FirstStep showing a plan](docs/screenshot.png)
-```
 
 ## Project files
 

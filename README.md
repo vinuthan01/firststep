@@ -152,4 +152,4 @@ Ideas and fixes are welcome. Good first contributions: new plan types or better 
 
 ## License
 
-MIT. See [LICENSE](LICENSE). Replace `[YOUR NAME]` in the license file with your name before publishing.
+MIT. See [LICENSE](LICENSE).

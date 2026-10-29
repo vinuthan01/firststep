@@ -98,7 +98,7 @@ A quick search found other tools in this space, such as the open-source desktop 
 | `plan.js` | The plan-building logic (also used by the tests) |
 | `app.js` | Connects the buttons and lists to the logic |
 | `tests/plan.test.js` | Automatic checks |
-| `docs/` | Put your screenshot here |
+| `docs/` | screenshot |
 
 ## Contributing
 
